@@ -1,0 +1,33 @@
+section {
+  min-width: 500px;
+  padding: 40px;
+  background: white;
+}
+
+section div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  margin: 20px 0;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+
+h2 {
+  padding-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+p {
+  color: white;
+}
+
+p a {
+  color: white;
+}
