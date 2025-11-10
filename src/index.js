@@ -3,7 +3,7 @@ import './index.css'
 import * as d3 from 'd3'
 import * as Plot from '@observablehq/plot'
 
-const resolution = '1D'
+const resolution = '3H'
 const countback = '3000'
 
 const desoHistoryUrl = `https://focus.xyz/api/v0/tokens/candlesticks/history?symbol=BC1YLbnP7rndL92x7DbLp6bkUpCgKmgoHgz7xEbwhgHTps3ZrXA6LtQ&resolution=${resolution}&countback=${countback}&quoteSymbol=BC1YLiwTN3DbkU8VmD7F7wXcRR1tFX6jDEkLyruHD2WsH3URomimxLX`
@@ -52,6 +52,8 @@ function processJsonAndSave(response, token) {
 }
 
 function createChart(token) {
+  console.log(priceHistory)
+
   const plot = Plot.plot({
     inset: 6,
     width: 1500,
@@ -100,10 +102,14 @@ function createCombinedChart(token1, token2, element) {
   const combinedData = []
 
   token1Data.forEach((token1DataItem, index) => {
-    combinedData.push({
-      timestamp: token1DataItem.timestamp,
-      close: token1DataItem.close / token2Data[index].close
-    })
+    console.log(token1DataItem, token2Data[index])
+
+    if (token1DataItem && token2Data[index]) {
+      combinedData.push({
+        timestamp: token1DataItem.timestamp,
+        close: token1DataItem.close / token2Data[index].close
+      })
+    }
   })
 
   const plot = Plot.plot({
